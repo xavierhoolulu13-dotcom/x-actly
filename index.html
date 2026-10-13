@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0e1512" />
+  <meta name="description" content="x actly — the retina. See exactly who's coming back, who's cooling, and who's gone quiet." />
+  <title>x actly — see them coming back</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#overview"><span class="brand-mark">x<span>.</span></span><span class="brand-name">x actly</span></a>
+      <div class="retina-copy"><strong>The retina.</strong><span>See exactly who's coming back.</span></div>
+      <div class="nav-label">WORKSPACE</div>
+      <nav class="main-nav">
+        <a class="nav-item active" href="#overview"><span class="nav-icon">◉</span> Overview</a>
+        <a class="nav-item" href="#customers"><span class="nav-icon">▦</span> Customers <span class="nav-count" id="nav-count">0</span></a>
+        <a class="nav-item" href="#nudges"><span class="nav-icon">↻</span> Nudges <span class="nav-dot" id="nudge-dot" hidden></span></a>
+      </nav>
+      <button class="add-btn" id="add-open">+ Add customer</button>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div><h1>Retention, in focus</h1><p class="sub">Monthly customers. Who's back, who's cooling, who needs a nudge.</p></div>
+        <input id="search-input" class="search" type="search" placeholder="Search customers…" aria-label="Search customers" />
+      </header>
+
+      <section class="metrics" id="metrics">
+        <div class="metric"><span class="metric-label">Monthly recurring</span><strong id="m-monthly">$0</strong></div>
+        <div class="metric"><span class="metric-label">Active customers</span><strong id="m-active">0</strong></div>
+        <div class="metric"><span class="metric-label">Cooling / cold</span><strong id="m-risk">0</strong></div>
+      </section>
+
+      <section class="panel" id="nudge-panel">
+        <div class="panel-head"><h2>Nudge queue</h2><span class="hint">Cooling &amp; cold, longest quiet first</span></div>
+        <div id="nudge-list"></div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head"><h2>Customers</h2></div>
+        <div class="table-wrap"><table>
+          <thead><tr><th>Customer</th><th>$/mo</th><th>Last seen</th><th>Status</th><th></th></tr></thead>
+          <tbody id="customer-list"></tbody>
+        </table></div>
+        <div class="empty-state" id="empty-state" hidden><div>◉</div><strong>No customers yet</strong><span>Add your first customer to start seeing retention.</span></div>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="modal" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <h2 id="modal-title">Add customer</h2>
+      <form id="customer-form">
+        <label>Name<input name="name" required maxlength="60" placeholder="Customer name" /></label>
+        <label>Business<input name="business" maxlength="60" placeholder="Business (optional)" /></label>
+        <label>$/month<input name="value" type="number" min="0" step="1" placeholder="0" /></label>
+        <div class="modal-actions">
+          <button type="button" class="btn-quiet" id="modal-cancel">Cancel</button>
+          <button type="submit" class="btn-solid">Add</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>
